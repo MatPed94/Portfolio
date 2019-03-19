@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/mathiasp/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp stylesheet.css $DEPLOYPATH
+    - /bin/cp script.js $DEPLOYPATH
+    - /bin/cp -R pdf $DEPLOYPATH/pdf
+    - /bin/cp -R images $DEPLOYPATH/images
+    - /bin/cp -R svg $DEPLOYPATH/svg
