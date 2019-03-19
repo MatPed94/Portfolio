@@ -1,0 +1,174 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+header.masthead  {
+    padding-top: calc(6rem + 106px);
+    padding-bottom: 6rem;
+
+    background-color: rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+}
+
+div#headerBackground  {
+    /* The image used */
+    background-image: url("images/bg.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#myPic {
+  border: 3px solid #fff;
+  margin-bottom: 30px;
+}
+
+div.content {
+    background: #fff;
+    position: relative;
+    z-index: 3;
+}
+
+div.content-raised {
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+section#portfolio {
+    padding: 70px 0;
+}
+
+div.portfolio-content {
+    padding: 50px 0;
+    scroll-margin-top: 50px;
+}
+
+section#omMig {
+    padding: 80px 0;
+}
+
+section#kontakt {
+    padding: 80px 0;
+    background-color: #343434;
+    background: linear-gradient(135deg, rgba(62,62,62,0.89) 0%, #151515 100%);
+}
+
+/* Navbar styles */
+.navbar {
+    transition: all 0.4s ease;
+}
+
+.nav-change {
+  background-color: #fff;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15);
+}
+
+/* Flip-card styles */
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    padding-top: 35px;
+  }
+
+  .flip-card-front {
+    background-color: #f2fcff;
+    z-index: 2;
+  }
+
+  .flip-card-front img {
+      width: 150px;
+  }
+
+  .flip-card-back {
+    background-color: #fafafa;
+    transform: rotateY(180deg);
+    z-index: 1;
+  }
+
+/* Corousel styles */
+div.carousel-inner {
+  max-height: 350px;
+}
+
+.fas.fa-file-pdf {
+  font-size: 1.5em;
+}
+
+#skovfoden {
+  width: 400px;
+  height: 500px;
+}
+
+#kompasUi {
+  padding: 0 25px;
+}
+
+#sprintBook {
+  width: 150px
+}
+
+ul#xp {
+  list-style-type: none;
+}
+
+ul#xp li::before {
+  content: "-";
+  padding-right: 8px;
+}
+
+ol.hugged {
+  list-style-type: none;
+  counter-reset: section;
+}
+
+ol.hugged li::before {
+  counter-increment: section;
+  content: "(" counter(section) ")";
+  padding-right: 8px;
+  margin-left: -25px;
+}
+
+div.ikoner img {
+  max-width: 35px;
+  max-height: 35px;
+}
+
+div.ikoner img#xd {
+  padding: 5px;
+}
