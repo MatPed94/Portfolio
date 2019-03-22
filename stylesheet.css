@@ -50,7 +50,7 @@ section#portfolio {
 }
 
 div.portfolio-content {
-    padding: 50px 0;
+    padding: 70px 0;
     scroll-margin-top: 50px;
 }
 
@@ -123,7 +123,7 @@ section#kontakt {
 
 /* Corousel styles */
 div.carousel-inner {
-  max-height: 350px;
+  max-height: 480px;
 }
 
 .fas.fa-file-pdf {
