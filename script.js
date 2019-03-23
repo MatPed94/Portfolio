@@ -36,6 +36,8 @@ $('#collapseContentThree').on('show.bs.collapse', function () {
   $('a[data-toggle="collapse"]')[2].innerText = 'Vis mindre.'
 });
 
+
+
 /* Activate scrollspy menu */
 $('body').scrollspy({
   target: '#navbarNav',
@@ -60,9 +62,33 @@ const intervalID = setInterval(function() {
         curSubHeaderItem = 0;
     }
     changeSubHeader(subHeader, xpArray[curSubHeaderItem]);
-}, 6000);
+}, 5000);
 
 /* Enable Tooltips */
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
+});
+
+/* Dynamic background */
+$(window).scroll(function() {
+  const distanceFromTop = $(window).scrollTop()
+  console.log(distanceFromTop);
+
+  $('#headerBackground').css({'transform' : 'translateY(' + distanceFromTop*0.33 + 'px)'});
+});
+
+
+/* Trigger animation chain */
+$(window).scroll(function() {
+  const distanceFromTop = $(window).scrollTop();
+  const canvasSize = $('#canvas').height();
+  const canvasPos =  $('#canvas').offset().top;
+
+  const trigger = canvasPos - canvasSize;
+
+  if (distanceFromTop > trigger) {
+    $('#canvas img').addClass('animate');
+  } else {
+    $('#canvas img').removeClass('animate');
+  }
 });

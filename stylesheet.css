@@ -7,8 +7,9 @@ body {
 }
 
 header.masthead  {
-    padding-top: calc(6rem + 106px);
     padding-bottom: 6rem;
+    padding-top: 6rem;
+    height: 90vh;
 
     background-color: rgba(0,0,0,0.5);
     background-blend-mode: multiply;
@@ -22,9 +23,7 @@ div#headerBackground  {
     height: 100%;
 
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-position: 50%;
     background-size: cover;
 }
 
@@ -50,7 +49,7 @@ section#portfolio {
 }
 
 div.portfolio-content {
-    padding: 70px 0;
+    padding: 50px 0;
     scroll-margin-top: 50px;
 }
 
@@ -171,4 +170,171 @@ div.ikoner img {
 
 div.ikoner img#xd {
   padding: 5px;
+}
+
+
+/* Drive Animation */
+#canvas {
+  width: 602px;
+  height: 318px;
+}
+
+#canvas img {
+  position: absolute;
+}
+
+img#treeIcon {
+  margin-left: 475px;
+  margin-top: 30px;
+  filter: grayscale(100%);
+}
+
+img#treeIcon.animate {
+  animation: pressed 0.5s, color forwards;
+  animation-delay: 3s, 3.1s;
+}
+
+@keyframes pressed {
+  0% {
+    transform: scale(1)
+  }
+  50% {
+    transform: scale(0.9)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes color {
+  100% {
+    filter: grayscale(0%);
+  }
+}
+
+img#cursor {
+  width: 20px;
+  height: 30px;
+  margin-top: 155px;
+  margin-left: 495px;
+}
+
+img#cursor.animate {
+  animation: move 1.8s forwards, click 0.5s, hide 2s forwards;
+  animation-delay: 1s, 3s, 5s;
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0px)
+  }
+  100% {
+    transform: translateY(-105px)
+  }
+}
+
+@keyframes click {
+  0% {
+    transform: scale(1) translateY(-105px)
+  }
+  50% {
+    transform: scale(0.9) translateY(-120px)
+  }
+  100% {
+    transform: scale(1) translateY(-105px)
+  }
+}
+
+img#driveLogo {
+  margin-top: 13px;
+  margin-left: 28px;
+}
+
+img#driveLogo.animate {
+  animation: hide 1s forwards;
+  animation-delay: 3.1s;
+}
+
+@keyframes hide {
+  100% {
+    opacity: 0
+  }
+}
+
+img#recyclingLogo {
+  margin-top: 14px;
+  margin-left: 29px;
+  opacity: 0;
+}
+
+img#recyclingLogo.animate {
+  animation: show 1s forwards;
+  animation-delay: 3.1s;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 55%, 75%, 100% {
+    transform: translateY(-0px);
+  }
+  40% {transform: translateY(-2px);}
+  60% {transform: translateY(2px);}
+}
+
+img#carbon  {
+  width: 48px;
+  margin-top: 213px;
+  margin-left: 27px;
+  opacity: 0;
+}
+
+img#carbon.animate  {
+  animation: show 2s forwards;
+  animation-delay: 3.5s;
+}
+
+#canvas img[src*="content"]{
+  margin-left: 142px;
+  opacity: 0;
+}
+
+img#green {
+  margin-top: 93px;
+}
+
+img#green.animate {
+  animation: show forwards, bounce 0.7s;
+  animation-delay: 4s, 4s;
+}
+
+img#orange {
+  margin-top: 150px;
+}
+
+img#orange.animate {
+  animation: show forwards, bounce 0.7s;
+  animation-delay: 4.5s, 4.5s;
+}
+
+img#brown {
+  margin-top: 207px;
+}
+
+img#brown.animate {
+  animation: show forwards, bounce 0.7s;
+  animation-delay: 5s, 5s;
+}
+
+img#greenTwo {
+  margin-top: 264px;
+}
+
+img#greenTwo.animate {
+  animation: show forwards, bounce 0.7s;
+  animation-delay: 5.5s, 5.5s;
 }
