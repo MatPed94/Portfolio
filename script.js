@@ -21,19 +21,20 @@ const navbarChange = function(distance, trigger) {
 
 /* Dynamic background */
 const headerParallax = function(distance) {
-  $('#headerBackground').css({'transform' : 'translateY(' + distance * 0.33 + 'px)'});
+  $('#headerBackground').css({'transform' : 'translateY(' + distance * 0.3 + 'px)'});
 }
 
 /* Trigger animation chain */
 const startAnimation = function(distance) {
   const canvasSize = $('#canvas').height();
   const canvasPos =  $('#canvas').offset().top;
+  const windowHeight = $(window).height();
 
-  const trigger = canvasPos - canvasSize;
+  const trigger = (canvasPos - canvasSize);
 
   if (distance > trigger) {
     $('#canvas img').addClass('animate');
-  } else {
+  } else if(distance < (trigger - windowHeight)) {
     $('#canvas img').removeClass('animate');
   }
 }
