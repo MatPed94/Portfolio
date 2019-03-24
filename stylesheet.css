@@ -9,6 +9,7 @@ body {
 header.masthead  {
     padding-bottom: 6rem;
     padding-top: 6rem;
+
     height: 90vh;
 
     background-color: rgba(0,0,0,0.5);
@@ -41,7 +42,8 @@ div.content {
 div.content-raised {
     margin: -60px 30px 0;
     border-radius: 6px;
-    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+            box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
 
 section#portfolio {
@@ -65,12 +67,14 @@ section#kontakt {
 
 /* Navbar styles */
 .navbar {
+    -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
 
 .nav-change {
   background-color: #fff;
-  box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15);
+  -webkit-box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15);
+          box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15);
 }
 
 /* Flip-card styles */
@@ -78,7 +82,8 @@ section#kontakt {
     background-color: transparent;
     width: 300px;
     height: 300px;
-    perspective: 1000px;
+    -webkit-perspective: 1000px;
+            perspective: 1000px;
     margin: 0 auto;
     cursor: pointer;
   }
@@ -88,19 +93,25 @@ section#kontakt {
     width: 100%;
     height: 100%;
     text-align: center;
+    -webkit-transition: -webkit-transform 0.6s;
+    transition: -webkit-transform 0.6s;
     transition: transform 0.6s;
-    transform-style: preserve-3d;
+    transition: transform 0.6s, -webkit-transform 0.6s;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
   }
 
   .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
   }
 
   .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
     border-radius: 6px;
     padding-top: 35px;
   }
@@ -116,7 +127,8 @@ section#kontakt {
 
   .flip-card-back {
     background-color: #fafafa;
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
     z-index: 1;
   }
 
@@ -186,29 +198,58 @@ div.ikoner img#xd {
 img#treeIcon {
   margin-left: 475px;
   margin-top: 30px;
-  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
 }
 
 img#treeIcon.animate {
-  animation: pressed 0.5s, color forwards;
-  animation-delay: 3s, 3.1s;
+  -webkit-animation: pressed 0.5s, color forwards;
+          animation: pressed 0.5s, color forwards;
+  -webkit-animation-delay: 3s, 3.1s;
+          animation-delay: 3s, 3.1s;
+}
+
+@-webkit-keyframes pressed {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1)
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9)
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1)
+  }
 }
 
 @keyframes pressed {
   0% {
-    transform: scale(1)
+    -webkit-transform: scale(1);
+            transform: scale(1)
   }
   50% {
-    transform: scale(0.9)
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9)
   }
   100% {
-    transform: scale(1)
+    -webkit-transform: scale(1);
+            transform: scale(1)
+  }
+}
+
+@-webkit-keyframes color {
+  100% {
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
   }
 }
 
 @keyframes color {
   100% {
-    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
   }
 }
 
@@ -220,28 +261,61 @@ img#cursor {
 }
 
 img#cursor.animate {
-  animation: move 1.8s forwards, click 0.5s, hide 2s forwards;
-  animation-delay: 1s, 3s, 5s;
+  -webkit-animation: move 1.8s forwards, click 0.5s, hide 2s forwards;
+          animation: move 1.8s forwards, click 0.5s, hide 2s forwards;
+  -webkit-animation-delay: 1s, 3s, 5s;
+          animation-delay: 1s, 3s, 5s;
+}
+
+@-webkit-keyframes move {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px)
+  }
+  100% {
+    -webkit-transform: translateY(-105px);
+            transform: translateY(-105px)
+  }
 }
 
 @keyframes move {
   0% {
-    transform: translateY(0px)
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px)
   }
   100% {
-    transform: translateY(-105px)
+    -webkit-transform: translateY(-105px);
+            transform: translateY(-105px)
+  }
+}
+
+@-webkit-keyframes click {
+  0% {
+    -webkit-transform: scale(1) translateY(-105px);
+            transform: scale(1) translateY(-105px)
+  }
+  50% {
+    -webkit-transform: scale(0.9) translateY(-120px);
+            transform: scale(0.9) translateY(-120px)
+  }
+  100% {
+    -webkit-transform: scale(1) translateY(-105px);
+            transform: scale(1) translateY(-105px)
   }
 }
 
 @keyframes click {
   0% {
-    transform: scale(1) translateY(-105px)
+    -webkit-transform: scale(1) translateY(-105px);
+            transform: scale(1) translateY(-105px)
   }
   50% {
-    transform: scale(0.9) translateY(-120px)
+    -webkit-transform: scale(0.9) translateY(-120px);
+            transform: scale(0.9) translateY(-120px)
   }
   100% {
-    transform: scale(1) translateY(-105px)
+    -webkit-transform: scale(1) translateY(-105px);
+            transform: scale(1) translateY(-105px)
   }
 }
 
@@ -251,8 +325,16 @@ img#driveLogo {
 }
 
 img#driveLogo.animate {
-  animation: hide 1s forwards;
-  animation-delay: 3.1s;
+  -webkit-animation: hide 1s forwards;
+          animation: hide 1s forwards;
+  -webkit-animation-delay: 3.1s;
+          animation-delay: 3.1s;
+}
+
+@-webkit-keyframes hide {
+  100% {
+    opacity: 0
+  }
 }
 
 @keyframes hide {
@@ -268,8 +350,16 @@ img#recyclingLogo {
 }
 
 img#recyclingLogo.animate {
-  animation: show 1s forwards;
-  animation-delay: 3.1s;
+  -webkit-animation: show 1s forwards;
+          animation: show 1s forwards;
+  -webkit-animation-delay: 3.1s;
+          animation-delay: 3.1s;
+}
+
+@-webkit-keyframes show {
+  100% {
+    opacity: 1
+  }
 }
 
 @keyframes show {
@@ -278,12 +368,22 @@ img#recyclingLogo.animate {
   }
 }
 
+@-webkit-keyframes bounce {
+  0%, 20%, 55%, 75%, 100% {
+    -webkit-transform: translateY(-0px);
+            transform: translateY(-0px);
+  }
+  40% {-webkit-transform: translateY(-2px);transform: translateY(-2px);}
+  60% {-webkit-transform: translateY(2px);transform: translateY(2px);}
+}
+
 @keyframes bounce {
   0%, 20%, 55%, 75%, 100% {
-    transform: translateY(-0px);
+    -webkit-transform: translateY(-0px);
+            transform: translateY(-0px);
   }
-  40% {transform: translateY(-2px);}
-  60% {transform: translateY(2px);}
+  40% {-webkit-transform: translateY(-2px);transform: translateY(-2px);}
+  60% {-webkit-transform: translateY(2px);transform: translateY(2px);}
 }
 
 img#carbon  {
@@ -294,8 +394,10 @@ img#carbon  {
 }
 
 img#carbon.animate  {
-  animation: show 2s forwards;
-  animation-delay: 3.5s;
+  -webkit-animation: show 2s forwards;
+          animation: show 2s forwards;
+  -webkit-animation-delay: 3.5s;
+          animation-delay: 3.5s;
 }
 
 #canvas img[src*="content"]{
@@ -308,8 +410,10 @@ img#green {
 }
 
 img#green.animate {
-  animation: show forwards, bounce 0.7s;
-  animation-delay: 4s, 4s;
+  -webkit-animation: show forwards, bounce 0.7s;
+          animation: show forwards, bounce 0.7s;
+  -webkit-animation-delay: 4s, 4s;
+          animation-delay: 4s, 4s;
 }
 
 img#orange {
@@ -317,8 +421,10 @@ img#orange {
 }
 
 img#orange.animate {
-  animation: show forwards, bounce 0.7s;
-  animation-delay: 4.5s, 4.5s;
+  -webkit-animation: show forwards, bounce 0.7s;
+          animation: show forwards, bounce 0.7s;
+  -webkit-animation-delay: 4.5s, 4.5s;
+          animation-delay: 4.5s, 4.5s;
 }
 
 img#brown {
@@ -326,8 +432,10 @@ img#brown {
 }
 
 img#brown.animate {
-  animation: show forwards, bounce 0.7s;
-  animation-delay: 5s, 5s;
+  -webkit-animation: show forwards, bounce 0.7s;
+          animation: show forwards, bounce 0.7s;
+  -webkit-animation-delay: 5s, 5s;
+          animation-delay: 5s, 5s;
 }
 
 img#greenTwo {
@@ -335,6 +443,8 @@ img#greenTwo {
 }
 
 img#greenTwo.animate {
-  animation: show forwards, bounce 0.7s;
-  animation-delay: 5.5s, 5.5s;
+  -webkit-animation: show forwards, bounce 0.7s;
+          animation: show forwards, bounce 0.7s;
+  -webkit-animation-delay: 5.5s, 5.5s;
+          animation-delay: 5.5s, 5.5s;
 }

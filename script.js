@@ -1,5 +1,5 @@
 $(window).scroll(function() {
-  if ($(document).scrollTop() > 100) {
+  if ($(document).scrollTop() > 120) {
     $('.navbar').addClass('nav-change');
     $('.navbar').addClass('navbar-light');
     $('.navbar').removeClass('bg-transparent');
@@ -74,7 +74,7 @@ $(window).scroll(function() {
   const distanceFromTop = $(window).scrollTop()
   console.log(distanceFromTop);
 
-  $('#headerBackground').css({'transform' : 'translateY(' + distanceFromTop*0.33 + 'px)'});
+  $('#headerBackground').css({'transform' : 'translateY(' + distanceFromTop*0.25 + 'px)'});
 });
 
 
