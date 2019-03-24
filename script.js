@@ -1,17 +1,46 @@
-$(window).scroll(function() {
-  if ($(document).scrollTop() > 120) {
-    $('.navbar').addClass('nav-change');
-    $('.navbar').addClass('navbar-light');
-    $('.navbar').removeClass('bg-transparent');
-    $('.navbar').removeClass('navbar-dark');
-  } else {
-    $('.navbar').addClass('navbar-dark');
-    $('.navbar').addClass('bg-transparent')
-    $('.navbar').removeClass('nav-change');
-    $('.navbar').removeClass('navbar-light');
-  }
+/* Init scroll dependent functions */
+$(window).scroll(function(){
+  const distancefromTop = $(window).scrollTop();
+
+  navbarChange(distancefromTop, 120);
+  headerParallax(distancefromTop);
+  startAnimation(distancefromTop);
 });
 
+/* --Scroll function section-- */
+
+/* Change navbar scrolling from top */
+const navbarChange = function(distance, trigger) {
+  const navbar = '.navbar';
+  if (distance > trigger) {
+    $(navbar).removeClass('bg-transparent navbar-dark').addClass('nav-change navbar-light');
+  } else {
+    $(navbar).removeClass('nav-change navbar-light').addClass('navbar-dark bg-transparent');
+  }
+}
+
+/* Dynamic background */
+const headerParallax = function(distance) {
+  $('#headerBackground').css({'transform' : 'translateY(' + distance*0.33 + 'px)'});
+}
+
+/* Trigger animation chain */
+const startAnimation = function(distance) {
+  const canvasSize = $('#canvas').height();
+  const canvasPos =  $('#canvas').offset().top;
+
+  const trigger = canvasPos - canvasSize;
+
+  if (distance > trigger) {
+    $('#canvas img').addClass('animate');
+  } else {
+    $('#canvas img').removeClass('animate');
+  }
+}
+
+/* --End of scroll function section-- */
+
+/* Collapse usability */
 $('#collapseContentOne').on('hide.bs.collapse', function () {
   $('a[data-toggle="collapse"]')[0].innerText = 'Vis mere.'
 });
@@ -67,27 +96,4 @@ const intervalID = setInterval(function() {
 /* Enable Tooltips */
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-});
-
-/* Dynamic background */
-$(window).scroll(function() {
-  const distanceFromTop = $(window).scrollTop()
-
-  $('#headerBackground').css({'transform' : 'translateY(' + distanceFromTop*0.25 + 'px)'});
-});
-
-
-/* Trigger animation chain */
-$(window).scroll(function() {
-  const distanceFromTop = $(window).scrollTop();
-  const canvasSize = $('#canvas').height();
-  const canvasPos =  $('#canvas').offset().top;
-
-  const trigger = canvasPos - canvasSize;
-
-  if (distanceFromTop > trigger) {
-    $('#canvas img').addClass('animate');
-  } else {
-    $('#canvas img').removeClass('animate');
-  }
 });
