@@ -21,7 +21,7 @@ const navbarChange = function(distance, trigger) {
 
 /* Dynamic background */
 const headerParallax = function(distance) {
-  $('#headerBackground').css({'transform' : 'translateY(' + distance*0.33 + 'px)'});
+  $('#headerBackground').css({'transform' : 'translateY(' + distance * 0.33 + 'px)'});
 }
 
 /* Trigger animation chain */
@@ -65,8 +65,6 @@ $('#collapseContentThree').on('show.bs.collapse', function () {
   $('a[data-toggle="collapse"]')[2].innerText = 'Vis mindre.'
 });
 
-
-
 /* Activate scrollspy menu */
 $('body').scrollspy({
   target: '#navbarNav',
@@ -74,19 +72,20 @@ $('body').scrollspy({
 });
 
 /* Subheader cycle */
-const subHeader = 'h2#subHeader';
-
 function changeSubHeader(elementPath, newText){
   $(elementPath).fadeOut(1000, function() {
       $(this).text(newText.innerText).fadeIn(1000);
   });
 }
 
-const xpArray = $('ul#xp li');
 let curSubHeaderItem = 0;
 
 const intervalID = setInterval(function() {
-    curSubHeaderItem++;
+  const subHeader = 'h2#subHeader';
+  const xpArray = $('ul#xp li');
+
+  curSubHeaderItem++;
+
     if (curSubHeaderItem >= xpArray.length) {
         curSubHeaderItem = 0;
     }
