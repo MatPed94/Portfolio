@@ -72,7 +72,6 @@ $(function () {
 /* Dynamic background */
 $(window).scroll(function() {
   const distanceFromTop = $(window).scrollTop()
-  console.log(distanceFromTop);
 
   $('#headerBackground').css({'transform' : 'translateY(' + distanceFromTop*0.25 + 'px)'});
 });
