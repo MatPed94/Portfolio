@@ -9,7 +9,6 @@ body {
 header.masthead  {
     padding-bottom: 6rem;
     padding-top: 6rem;
-
     height: 90vh;
 
     background-color: rgba(0,0,0,0.5);
@@ -394,10 +393,10 @@ img#carbon  {
 }
 
 img#carbon.animate  {
-  -webkit-animation: show 2s forwards;
-          animation: show 2s forwards;
-  -webkit-animation-delay: 3.5s;
-          animation-delay: 3.5s;
+  -webkit-animation: show forwards, bounce 0.4s;
+          animation: show forwards, bounce 0.4s;
+  -webkit-animation-delay: 6s, 6s;
+          animation-delay: 6s, 6s;
 }
 
 #canvas img[src*="content"]{
