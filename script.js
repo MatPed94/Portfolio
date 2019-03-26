@@ -42,23 +42,22 @@ const startAnimation = function(distance) {
 /* --End of scroll function section-- */
 
 /* Collapse usability */
-
-
-// 123
 $('.collapse').on('show.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
+  changeToggleCol();
 });
 
 $('.collapse').on('hide.bs.collapse', function () {
   let collapseId = $(this).attr('id');
-  console.log($('.collapse'));
 
+  scrollBack(collapseId);
   toggleTitle(collapseId);
-  //scrollBack(collapseId);
+  changeToggleCol();
 });
 
+/* Changes the title of the a element based on the collapse show and hide */
 const toggleTitle = function(id) {
   let curCollapse = $('a[href*="' + id + '"]');
 
@@ -69,8 +68,25 @@ const toggleTitle = function(id) {
   }
 }
 
+/* Function for scroll back to the top of the content on collapse hide */
 const scrollBack = function(id) {
-  $('html, body').animate({scrollTop: $(id).offset().top - 50});
+  const parent = $('#'+id)[0].parentElement.parentElement.parentElement.parentElement;
+  const parerntId = '#'+$(parent).attr('id');
+
+  $('html, body').animate({scrollTop: $(parerntId).offset().top - 50});
+}
+
+/* Move #collapseContentThree toggle a element column on show and hide */
+const changeToggleCol = function() {
+  const element = $('#collapseContentThree')[0];
+  const sipling = $(element.nextElementSibling)[0];
+  const siplingChild = $(sipling.children)[0];
+
+  if (!(element.classList.value.includes('show'))) {
+    $(siplingChild).removeClass('col-md-8').addClass('col-md-12');
+  } else {
+    $(siplingChild).removeClass('col-md-12').addClass('col-md-8');
+  }
 }
 
 /* Activate scrollspy menu */
