@@ -42,19 +42,32 @@ const startAnimation = function(distance) {
 /* --End of scroll function section-- */
 
 /* Collapse usability */
+/* Function for scroll back to the top of the content on collapse hide on a element click */
+$('a[data-toggle="collapse"]').click(function() {
+  const collapseId = $(this).attr('href');
+
+  const topParent = $(collapseId).parents('.portfolio-content');
+  const parerntId = '#'+$(topParent).attr('id');
+
+  if($(collapseId)[0].classList.value.includes('show')) {
+    $('html, body').animate({scrollTop: $(parerntId).offset().top - 50});
+  }
+});
+
+/* Executes functions on collapse show */
 $('.collapse').on('show.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
-  changeToggleCol();
+  changeToggleCol(collapseId);
 });
 
+/* Executes functions on collapse hide */
 $('.collapse').on('hide.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
-  scrollBack(collapseId);
   toggleTitle(collapseId);
-  changeToggleCol();
+  changeToggleCol(collapseId);
 });
 
 /* Changes the title of the a element based on the collapse show and hide */
@@ -68,23 +81,15 @@ const toggleTitle = function(id) {
   }
 }
 
-/* Function for scroll back to the top of the content on collapse hide */
-const scrollBack = function(id) {
-  const parent = $('#'+id)[0].parentElement.parentElement.parentElement.parentElement;
-  const parerntId = '#'+$(parent).attr('id');
-
-  $('html, body').animate({scrollTop: $(parerntId).offset().top - 50});
-}
-
 /* Move #collapseContentThree toggle a element column on show and hide */
-const changeToggleCol = function() {
+const changeToggleCol = function(id) {
   const element = $('#collapseContentThree')[0];
   const sipling = $(element.nextElementSibling)[0];
   const siplingChild = $(sipling.children)[0];
 
-  if (!(element.classList.value.includes('show'))) {
+  if (!(element.classList.value.includes('show')) && (id === 'collapseContentThree' )) {
     $(siplingChild).removeClass('col-md-8').addClass('col-md-12');
-  } else {
+  } else if((element.classList.value.includes('show')) && (id === 'collapseContentThree' )) {
     $(siplingChild).removeClass('col-md-12').addClass('col-md-8');
   }
 }
