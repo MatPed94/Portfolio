@@ -42,29 +42,36 @@ const startAnimation = function(distance) {
 /* --End of scroll function section-- */
 
 /* Collapse usability */
-$('#collapseContentOne').on('hide.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[0].innerText = 'Vis mere.'
+
+
+// 123
+$('.collapse').on('show.bs.collapse', function () {
+  let collapseId = $(this).attr('id');
+
+  toggleTitle(collapseId);
 });
 
-$('#collapseContentOne').on('show.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[0].innerText = 'Vis mindre.'
+$('.collapse').on('hide.bs.collapse', function () {
+  let collapseId = $(this).attr('id');
+  console.log($('.collapse'));
+
+  toggleTitle(collapseId);
+  //scrollBack(collapseId);
 });
 
-$('#collapseContentTwo').on('hide.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[1].innerText = 'Vis mere.'
-});
+const toggleTitle = function(id) {
+  let curCollapse = $('a[href*="' + id + '"]');
 
-$('#collapseContentTwo').on('show.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[1].innerText = 'Vis mindre.'
-});
+  if (curCollapse.text() === 'Vis mere.') {
+    curCollapse.text( 'Vis mindre.' );
+  } else {
+    curCollapse.text( 'Vis mere.' );
+  }
+}
 
-$('#collapseContentThree').on('hide.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[2].innerText = 'Vis mere.'
-});
-
-$('#collapseContentThree').on('show.bs.collapse', function () {
-  $('a[data-toggle="collapse"]')[2].innerText = 'Vis mindre.'
-});
+const scrollBack = function(id) {
+  $('html, body').animate({scrollTop: $(id).offset().top - 50});
+}
 
 /* Activate scrollspy menu */
 $('body').scrollspy({
