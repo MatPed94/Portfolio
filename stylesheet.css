@@ -79,7 +79,8 @@ section#kontakt {
 /* Flip-card styles */
 .flip-card {
     background-color: transparent;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 300px;
     -webkit-perspective: 1000px;
             perspective: 1000px;
@@ -446,4 +447,8 @@ img#greenTwo.animate {
           animation: show forwards, bounce 0.7s;
   -webkit-animation-delay: 5.5s, 5.5s;
           animation-delay: 5.5s, 5.5s;
+}
+
+div#collapseContentTwo img {
+  margin: 25px 0;
 }
