@@ -656,22 +656,22 @@
               </div>
               <div class="row">
                 <div class="col-md">
-                  <form action="mail\contact-me.php" id="contactForm" name="sentMessage" method="post">
+                  <form id="contactForm" novalidate>
                     <div class="form-group">
-                      <label for="#navnInput">Navn</label>
-                      <input class="form-control" id="navnInput" type="text" name="name" value="">
+                      <label for="#navnInput">Navn *</label>
+                      <input class="form-control" id="navnInput" type="text" name="name" required>
                     </div>
                     <div class="form-group">
-                      <label for="#emailInput">Email</label>
-                      <input  id="emailInput" class="form-control" type="email" name="email" value="">
+                      <label for="#emailInput">Email *</label>
+                      <input  id="emailInput" class="form-control" type="email" name="email" required>
                     </div>
                     <div class="form-group">
                       <label for="#telefonInput">Telefon/mobil</label>
-                      <input class="form-control" type="tel" name="phone" value="">
+                      <input class="form-control" type="tel" name="phone">
                     </div>
                     <div class="form-group">
-                      <label for="#beskedInput">Besked</label>
-                      <textarea id="beskedInput" class="form-control" name="message" rows="8" cols="80"></textarea>
+                      <label for="#beskedInput">Besked *</label>
+                      <textarea id="beskedInput" class="form-control" name="message" rows="8" cols="80" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send</button>
                   </form>
