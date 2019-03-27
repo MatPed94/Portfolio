@@ -8,3 +8,4 @@ deployment:
     - /bin/cp -R pdf $DEPLOYPATH/pdf
     - /bin/cp -R images $DEPLOYPATH/images
     - /bin/cp -R svg $DEPLOYPATH/svg
+    - /bin/cp -R mail $DEPLOYPATH/mail

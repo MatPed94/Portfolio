@@ -59,7 +59,7 @@ $('.collapse').on('show.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
-  changeToggleCol(collapseId);
+ // changeToggleCol(collapseId);
 });
 
 /* Executes functions on collapse hide */
@@ -67,7 +67,7 @@ $('.collapse').on('hide.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
-  changeToggleCol(collapseId);
+ // changeToggleCol(collapseId);
 });
 
 /* Changes the title of the a element based on the collapse show and hide */
