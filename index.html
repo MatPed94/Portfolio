@@ -658,11 +658,11 @@
                 <div class="col-md">
                   <form id="contactForm" class="mb-3" novalidate>
                     <div class="form-group">
-                      <label for="#navnInput">Navn *</label>
+                      <label for="#navnInput">Navn</label>
                       <input class="form-control" id="navnInput" type="text" name="name" required>
                     </div>
                     <div class="form-group">
-                      <label for="#emailInput">Email *</label>
+                      <label for="#emailInput">Email</label>
                       <input  id="emailInput" class="form-control" type="email" name="email" required>
                     </div>
                     <div class="form-group">
@@ -670,31 +670,16 @@
                       <input class="form-control" type="tel" name="phone">
                     </div>
                     <div class="form-group">
-                      <label for="#beskedInput">Besked *</label>
+                      <label for="#beskedInput">Besked</label>
                       <textarea id="beskedInput" class="form-control" name="message" rows="8" cols="80" required></textarea>
                     </div>
                     <button id="sendMessageButton" type="submit" class="btn btn-primary">Send</button>
                   </form>
-
-                  <div id="messageSuccess" class="alert alert-success alert-dismissible fade show d-none" role="alert">
-                    <strong>Tak for beskeden.</strong> Jeg vender tilbage til dig snarest muligt.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <div id="messageDanger" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                    <strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <div id="messageWarning" class="alert alert-warning alert-dismissible fade show d-none" role="alert">
-                    Check at du har udfyldt alle felter med <strong>*</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                  
+                  <div class="alerts">
+                    <div id="messageSuccess"></div>
+                    <div id="messageDanger"></div>
+                    <div id="messageWarning"></div>
                   </div>
 
                 </div>

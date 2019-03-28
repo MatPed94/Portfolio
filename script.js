@@ -130,7 +130,7 @@ $(function () {
 
 $('#contactForm').submit(function(event) {
   event.preventDefault();
-  console.log(this);
+  const self = $(this);
   const sendButton = $('#sendMessageButton');
   sendButton.prop('disabled', true); // Disable send button while Ajax call is running
 
@@ -139,11 +139,6 @@ $('#contactForm').submit(function(event) {
         email = $('input[name="email"]').val(),
         phone = $('input[name="phone"]').val(),
         message = $('textarea[name="message"]').val();
-
-  // Sellect allerts
-  const messageSuccess = $('#messageSuccess'),
-        messageDanger = $('#messageDanger'),
-        messageWarning = $('#messageWarning');
 
   $.ajax({
     url: 'mail/contact-me.php',
@@ -156,16 +151,16 @@ $('#contactForm').submit(function(event) {
     },
     cache: false,
     success: function() {
-      messageSuccess.removeClass('d-none');
+      $('#messageSuccess').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Tak for beskeden.</strong> Jeg vender tilbage til dig snarest muligt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 
       // Clear form fields
-      $(this).trigger("reset");
+      self.trigger('reset');
     },
     error: function() {
-      messageDanger.removeClass('d-none');
+      $('#messageDanger').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 
       // Clear form fields
-      $(this).trigger("reset");
+      self.trigger('reset');
     },
     complete: function() {
       setTimeout(function() {
@@ -177,5 +172,12 @@ $('#contactForm').submit(function(event) {
 
 /*When clicking on Full hide fail/success boxes */
 $('input[name="name"]').focus(function() {
-  $('div.alert').addClass('d-none');
+  $('.alerts > div').html('');
+});
+
+$('#contactForm *[required]').blur(function() {
+  const title = $(this).siblings('label').text();
+  if ( !$(this).val() ) {
+    $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + title.toLowerCase() + '</strong> feltet før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+  }
 });
