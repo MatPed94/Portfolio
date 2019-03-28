@@ -132,7 +132,7 @@ $('#contactForm').submit(function(event) {
   event.preventDefault();
   const self = $(this);
   const sendButton = $('#sendMessageButton');
-  sendButton.prop('disabled', true); // Disable send button while Ajax call is running
+  sendButton.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').prop("disabled", true); // Disable send button while Ajax call is running
 
   // Get data from form
   const name = $('input[name="name"]').val(),
@@ -164,15 +164,15 @@ $('#contactForm').submit(function(event) {
     },
     complete: function() {
       setTimeout(function() {
-        sendButton.prop("disabled", false); // Re-enable submit button when AJAX call is complete
+        sendButton.html('Send').prop("disabled", false); // Re-enable submit button when AJAX call is complete
       }, 1000);
     }
   });
 });
 
 /*When clicking on Full hide fail/success boxes */
-$('input[name="name"]').focus(function() {
-  $('.alerts > div').html('');
+$('*[name]').focus(function() {
+  $('.alert').alert('close');
 });
 
 $('#contactForm *[required]').blur(function() {
