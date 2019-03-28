@@ -156,7 +156,7 @@ $('#contactForm').submit(function(event) {
     },
     cache: false,
     success: function() {
-      messageDanger.removeClass('d-none');
+      messageSuccess.removeClass('d-none');
 
       // Clear form fields
       $(this).trigger("reset");
