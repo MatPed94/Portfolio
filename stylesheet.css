@@ -452,3 +452,7 @@ img#greenTwo.animate {
 div#collapseContentTwo img {
   margin: 25px 0;
 }
+
+.alerts {
+  height: 50px;
+}
