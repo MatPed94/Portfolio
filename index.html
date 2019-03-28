@@ -42,7 +42,7 @@
 
       <div id="headerBackground">
             <header class="masthead text-white text-center">
-                <div class="container">
+                <div class="container align-self-center">
                     <img id="myPic" class="img-fluid rounded-circle mx-auto d-block" src="images\profile.jpg">
                     <h1 class="text-uppercase">Mathias Kjær Pedersen</h1>
                     <em><h2 id="subHeader" class="font-weight-light mb-4">User Experience</h2></em>
@@ -656,7 +656,7 @@
               </div>
               <div class="row">
                 <div class="col-md">
-                  <form id="contactForm" novalidate>
+                  <form id="contactForm" class="mb-3" novalidate>
                     <div class="form-group">
                       <label for="#navnInput">Navn *</label>
                       <input class="form-control" id="navnInput" type="text" name="name" required>
@@ -673,8 +673,30 @@
                       <label for="#beskedInput">Besked *</label>
                       <textarea id="beskedInput" class="form-control" name="message" rows="8" cols="80" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button id="sendMessageButton" type="submit" class="btn btn-primary">Send</button>
                   </form>
+
+                  <div id="messageSuccess" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+                    <strong>Tak for beskeden.</strong> Jeg vender tilbage til dig snarest muligt.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div id="messageDanger" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+                    <strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div id="messageWarning" class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+                    Check at du har udfyldt alle felter med <strong>*</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
                 </div>
                 <div class="col-md">
                     <address class="text-center my-4">

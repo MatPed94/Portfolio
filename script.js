@@ -125,3 +125,57 @@ const intervalID = setInterval(function() {
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
+
+/* Submit functionality */
+
+$('#contactForm').submit(function(event) {
+  event.preventDefault();
+  console.log(this);
+  const sendButton = $('#sendMessageButton');
+  sendButton.prop('disabled', true); // Disable send button while Ajax call is running
+
+  // Get data from form
+  const name = $('input[name="name"]').val(),
+        email = $('input[name="email"]').val(),
+        phone = $('input[name="phone"]').val(),
+        message = $('textarea[name="message"]').val();
+
+  // Sellect allerts
+  const messageSuccess = $('#messageSuccess'),
+        messageDanger = $('#messageDanger'),
+        messageWarning = $('#messageWarning');
+
+  $.ajax({
+    url: 'mail/contact-me.php',
+    method: 'POST',
+    data: {
+      name: name,
+      email: email,
+      phone: phone,
+      message: message
+    },
+    cache: false,
+    success: function() {
+      messageDanger.removeClass('d-none');
+
+      // Clear form fields
+      $(this).trigger("reset");
+    },
+    error: function() {
+      messageDanger.removeClass('d-none');
+
+      // Clear form fields
+      $(this).trigger("reset");
+    },
+    complete: function() {
+      setTimeout(function() {
+        sendButton.prop("disabled", false); // Re-enable submit button when AJAX call is complete
+      }, 1000);
+    }
+  });
+});
+
+/*When clicking on Full hide fail/success boxes */
+$('input[name="name"]').focus(function() {
+  $('div.alert').addClass('d-none');
+});
