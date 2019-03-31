@@ -58,7 +58,8 @@ $('a[data-toggle="collapse"]').click(function() {
 $('.collapse').on('show.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
-  loadCollapseImages(collapseId)
+  loadCollapseIframes(collapseId);
+  loadCollapseImages(collapseId);
 
   toggleTitle(collapseId);
  // changeToggleCol(collapseId);
@@ -184,12 +185,24 @@ $('#contactForm *[required]').blur(function() {
   }
 });
 
-/* Lazy-load images inside collapse show */
+/* Lazy-load images and iframes inside collapse show */
 const loadCollapseImages = function(id) {
   const collapseImg = $('#'+ id +' img');
-  
+
   for (let i = 0; i < collapseImg.length; i++) {
     const el = $(collapseImg[i]);
+    const elDataAttr = el.attr('data-src');
+    if (elDataAttr) {
+      el.attr('src', elDataAttr);
+    }
+  }
+}
+
+const loadCollapseIframes = function(id) {
+  const collapseIframe = $('#'+ id +' iframe');
+  
+  for (let i = 0; i < collapseIframe.length; i++) {
+    const el = $(collapseIframe[i]);
     const elDataAttr = el.attr('data-src');
     if (elDataAttr) {
       el.attr('src', elDataAttr);
