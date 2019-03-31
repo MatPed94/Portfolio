@@ -58,6 +58,8 @@ $('a[data-toggle="collapse"]').click(function() {
 $('.collapse').on('show.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
+  loadCollapseImages(collapseId)
+
   toggleTitle(collapseId);
  // changeToggleCol(collapseId);
 });
@@ -181,3 +183,16 @@ $('#contactForm *[required]').blur(function() {
     $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + title.toLowerCase() + '</strong> feltet før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
   }
 });
+
+/* Lazy-load images inside collapse show */
+const loadCollapseImages = function(id) {
+  const collapseImg = $('#'+ id +' img');
+  
+  for (let i = 0; i < collapseImg.length; i++) {
+    const el = $(collapseImg[i]);
+    const elDataAttr = el.attr('data-src');
+    if (elDataAttr) {
+      el.attr('src', elDataAttr);
+    }
+  }
+}
