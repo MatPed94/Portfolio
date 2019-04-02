@@ -191,9 +191,10 @@ const loadCollapseImages = function(id) {
 
   for (let i = 0; i < collapseImg.length; i++) {
     const el = $(collapseImg[i]);
-    const elDataAttr = el.attr('data-src');
-    if (elDataAttr) {
-      el.attr('src', elDataAttr);
+    const elDataSrc = el.attr('data-src');
+    const elSrc = el.attr('src');
+    if (elDataSrc && !(elSrc)) {
+      el.attr('src', elDataSrc);
     }
   }
 }
@@ -203,9 +204,10 @@ const loadCollapseIframes = function(id) {
   
   for (let i = 0; i < collapseIframe.length; i++) {
     const el = $(collapseIframe[i]);
-    const elDataAttr = el.attr('data-src');
-    if (elDataAttr) {
-      el.attr('src', elDataAttr);
+    const elDataSrc = el.attr('data-src');
+    const elSrc = el.attr('src');
+    if (elDataSrc && !(elSrc)) {
+      el.attr('src', elDataSrc);
     }
   }
 }
