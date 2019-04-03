@@ -160,10 +160,11 @@ $('#contactForm').submit(function(event) {
       self.trigger('reset');
     },
     error: function() {
-      $('#messageDanger').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-
-      // Clear form fields
-      self.trigger('reset');
+      if (warningHandler()) {
+        $('#messageDanger').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      } else {
+        warningHandler();
+      }
     },
     complete: function() {
       setTimeout(function() {
@@ -173,18 +174,25 @@ $('#contactForm').submit(function(event) {
   });
 });
 
-/*When clicking on Full hide fail/success boxes */
+/* When clicking on Full hide fail/success boxes */
 $('*[name]').focus(function() {
   $('.alert').alert('close');
 });
 
+/* Warning when leaving required fields */
 $('#contactForm *[required]').blur(function() {
-  const required = $('#contactForm *[required]');
-  const titles = [];
+  console.log(warningHandler());
+  warningHandler();
+});
+
+/* Warning on empty required fields */
+const warningHandler = function() {
+  const required = $('#contactForm *[required]'),
+        titles = [];
   
   for (let i = 0; i < required.length; i++) {
-    const el = $(required[i]);
-    const title = el.siblings('label').text();
+    const el = $(required[i]),
+          title = el.siblings('label').text();
     
     if (!(el.val())) {
       titles.push(title);
@@ -193,21 +201,24 @@ $('#contactForm *[required]').blur(function() {
   if (titles.length === 1) {
     $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + titles.toString().toLowerCase() + '</strong> feltet før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
   } else if (titles.length > 0) {
-    const titlesJoin = titles.join(', ');
-    const lastCommaIndex = titlesJoin.lastIndexOf(', ');
-    const titlesStr = titlesJoin.slice(0, lastCommaIndex) + titlesJoin.slice(lastCommaIndex).replace(', ', ' og ');
+    const titlesJoin = titles.join(', '),
+          lastCommaIndex = titlesJoin.lastIndexOf(', '),
+          titlesStr = titlesJoin.slice(0, lastCommaIndex) + titlesJoin.slice(lastCommaIndex).replace(', ', ' og ');
     $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + titlesStr.toLowerCase() + '</strong> felterne før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+  } else {
+    return true;
   }
-});
+}
 
 /* Lazy-load images and iframes inside collapse show */
 const loadCollapseImages = function(id) {
   const collapseImg = $('#'+ id +' img');
 
   for (let i = 0; i < collapseImg.length; i++) {
-    const el = $(collapseImg[i]);
-    const elDataSrc = el.attr('data-src');
-    const elSrc = el.attr('src');
+    const el = $(collapseImg[i]),
+          elDataSrc = el.attr('data-src'),
+          elSrc = el.attr('src');
+
     if (elDataSrc && !(elSrc)) {
       el.attr('src', elDataSrc);
     }
