@@ -656,7 +656,7 @@
               </div>
               <div class="row">
                 <div class="col-md">
-                  <form id="contactForm" class="mb-3" novalidate>
+                  <form id="contactForm" class="mb-3 needs-validation" novalidate>
                     <div class="form-group">
                       <label for="#navnInput">Navn</label>
                       <input class="form-control" id="navnInput" type="text" name="name" required>
@@ -664,6 +664,9 @@
                     <div class="form-group">
                       <label for="#emailInput">Email</label>
                       <input  id="emailInput" class="form-control" type="email" name="email" required>
+                      <div class="invalid-feedback">
+                        Ikke en rigtig email adresse.
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="#telefonInput">Telefon/mobil</label>

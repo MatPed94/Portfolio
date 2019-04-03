@@ -133,6 +133,8 @@ $(function () {
 
 $('#contactForm').submit(function(event) {
   event.preventDefault();
+  event.stopPropagation();
+  
   const self = $(this);
   const sendButton = $('#sendMessageButton');
   sendButton.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').prop("disabled", true); // Disable send button while Ajax call is running
@@ -155,15 +157,16 @@ $('#contactForm').submit(function(event) {
     cache: false,
     success: function() {
       $('#messageSuccess').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Tak for beskeden.</strong> Jeg vender tilbage til dig snarest muligt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-
-      // Clear form fields
-      self.trigger('reset');
+      
+      $('#contactForm').removeClass('was-validated');
+      self.trigger('reset'); // Clear form fields
     },
     error: function() {
       if (warningHandler()) {
         $('#messageDanger').html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Noget gik galt.</strong> Prøv igen på et senere tidspunkt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       } else {
         warningHandler();
+        $('#contactForm').addClass('was-validated');
       }
     },
     complete: function() {
@@ -181,7 +184,6 @@ $('*[name]').focus(function() {
 
 /* Warning when leaving required fields */
 $('#contactForm *[required]').blur(function() {
-  console.log(warningHandler());
   warningHandler();
 });
 
@@ -189,7 +191,7 @@ $('#contactForm *[required]').blur(function() {
 const warningHandler = function() {
   const required = $('#contactForm *[required]'),
         titles = [];
-  
+
   for (let i = 0; i < required.length; i++) {
     const el = $(required[i]),
           title = el.siblings('label').text();
@@ -206,7 +208,7 @@ const warningHandler = function() {
           titlesStr = titlesJoin.slice(0, lastCommaIndex) + titlesJoin.slice(lastCommaIndex).replace(', ', ' og ');
     $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + titlesStr.toLowerCase() + '</strong> felterne før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
   } else {
-    return true;
+    return true; // Returns true to use in ajax error handler when all fields er filled
   }
 }
 
