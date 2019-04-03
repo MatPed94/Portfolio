@@ -179,9 +179,24 @@ $('*[name]').focus(function() {
 });
 
 $('#contactForm *[required]').blur(function() {
-  const title = $(this).siblings('label').text();
-  if ( !$(this).val() ) {
-    $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + title.toLowerCase() + '</strong> feltet før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+  const required = $('#contactForm *[required]');
+  const titles = [];
+  
+  for (let i = 0; i < required.length; i++) {
+    const el = $(required[i]);
+    const title = el.siblings('label').text();
+    
+    if (!(el.val())) {
+      titles.push(title);
+    }
+  }
+  if (titles.length === 1) {
+    $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + titles.toString().toLowerCase() + '</strong> feltet før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+  } else if (titles.length > 0) {
+    const titlesJoin = titles.join(', ');
+    const lastCommaIndex = titlesJoin.lastIndexOf(', ');
+    const titlesStr = titlesJoin.slice(0, lastCommaIndex) + titlesJoin.slice(lastCommaIndex).replace(', ', ' og ');
+    $('#messageWarning').html('<div id="messageWarning" class="alert alert-warning alert-dismissible fade show" role="alert">Undfyld venligst <strong>' + titlesStr.toLowerCase() + '</strong> felterne før du sender.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
   }
 });
 

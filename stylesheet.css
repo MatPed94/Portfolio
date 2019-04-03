@@ -6,6 +6,10 @@ body {
     background-color: #fafafa;
 }
 
+iframe {
+  background-color: lightgrey;
+}
+
 header.masthead  {
     height: 90vh;
     display: flex;
