@@ -62,7 +62,7 @@ $('.collapse').on('show.bs.collapse', function () {
   loadCollapseImages(collapseId);
 
   toggleTitle(collapseId);
- // changeToggleCol(collapseId);
+  changeToggleCol();
 });
 
 /* Executes functions on collapse hide */
@@ -70,7 +70,7 @@ $('.collapse').on('hide.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
- // changeToggleCol(collapseId);
+  changeToggleCol();
 });
 
 /* Changes the title of the a element based on the collapse show and hide */
@@ -84,16 +84,15 @@ const toggleTitle = function(id) {
   }
 }
 
-/* Move #collapseContentThree toggle a element column on show and hide */
-const changeToggleCol = function(id) {
-  const element = $('#collapseContentThree')[0];
-  const sipling = $(element.nextElementSibling)[0];
-  const siplingChild = $(sipling.children)[0];
+/* Move #collapseContentTwo toggle a element column on show and hide */
+const changeToggleCol = function() {
+  const tag = $('.content-scale');
+  const content = $('#collapseContentTwo');
 
-  if (!(element.classList.value.includes('show')) && (id === 'collapseContentThree' )) {
-    $(siplingChild).removeClass('col-md-8').addClass('col-md-12');
-  } else if((element.classList.value.includes('show')) && (id === 'collapseContentThree' )) {
-    $(siplingChild).removeClass('col-md-12').addClass('col-md-8');
+  if (tag.hasClass('col-lg-12')) {
+    tag.addClass('col-lg-8').removeClass('col-lg-12');
+  } else {
+    tag.addClass('col-lg-12').removeClass('col-lg-8');
   }
 }
 
