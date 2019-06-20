@@ -62,7 +62,7 @@ $('.collapse').on('show.bs.collapse', function () {
   loadCollapseImages(collapseId);
 
   toggleTitle(collapseId);
-  changeToggleCol();
+  changeToggleCol(collapseId);
 });
 
 /* Executes functions on collapse hide */
@@ -70,7 +70,7 @@ $('.collapse').on('hide.bs.collapse', function () {
   let collapseId = $(this).attr('id');
 
   toggleTitle(collapseId);
-  changeToggleCol();
+  changeToggleCol(collapseId);
 });
 
 /* Changes the title of the a element based on the collapse show and hide */
@@ -85,14 +85,15 @@ const toggleTitle = function(id) {
 }
 
 /* Move #collapseContentTwo toggle a element column on show and hide */
-const changeToggleCol = function() {
+const changeToggleCol = function(collapseId) {
   const tag = $('.content-scale');
-  const content = $('#collapseContentTwo');
 
-  if (tag.hasClass('col-lg-12')) {
-    tag.addClass('col-lg-8').removeClass('col-lg-12');
-  } else {
-    tag.addClass('col-lg-12').removeClass('col-lg-8');
+  if (collapseId === 'collapseContentTwo') {
+    if (tag.hasClass('col-lg-12')) {
+      tag.addClass('col-lg-8').removeClass('col-lg-12');
+    } else {
+      tag.addClass('col-lg-12').removeClass('col-lg-8');
+    }
   }
 }
 
@@ -133,7 +134,7 @@ $(function () {
 $('#contactForm').submit(function(event) {
   event.preventDefault();
   event.stopPropagation();
-  
+
   const self = $(this);
   const sendButton = $('#sendMessageButton');
   sendButton.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').prop("disabled", true); // Disable send button while Ajax call is running
@@ -156,7 +157,7 @@ $('#contactForm').submit(function(event) {
     cache: false,
     success: function() {
       $('#messageSuccess').html('<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Tak for beskeden.</strong> Jeg vender tilbage til dig snarest muligt.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      
+
       $('#contactForm').removeClass('was-validated');
       self.trigger('reset'); // Clear form fields
     },
@@ -194,7 +195,7 @@ const warningHandler = function() {
   for (let i = 0; i < required.length; i++) {
     const el = $(required[i]),
           title = el.siblings('label').text();
-    
+
     if (!(el.val())) {
       titles.push(title);
     }
@@ -228,7 +229,7 @@ const loadCollapseImages = function(id) {
 
 const loadCollapseIframes = function(id) {
   const collapseIframe = $('#'+ id +' iframe');
-  
+
   for (let i = 0; i < collapseIframe.length; i++) {
     const el = $(collapseIframe[i]);
     const elDataSrc = el.attr('data-src');
