@@ -1,29 +1,28 @@
-const endPoint = "https://www.jsonstore.io/fe2ed6d34e04b6aa3f1fefab71301a0264d78cd42d636801d29312cd1a565b21";
+const  endPoint = "https://eitheror-e084.restdb.io/rest/links";
+const key = "5d0cc89852556062830a4674";
 
-function send_request(eitherUrl, orUrl) {
-    this.eitherUrl = eitherUrl;
-    this.orUrl = orUrl;
-
-    $.ajax({
-        'url': endPoint + "/" + window.location.hash.substr(1),
-        'type': 'POST',
-        'data': {
-           'eitherUrl': JSON.stringify(this.eitherUrl),
-           'orUrl': JSON.stringify(this.orUrl)
+function sendRequest(data) {
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": endPoint,
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",
+          "x-apikey": key,
+          "cache-control": "no-cache"
         },
-        'dataType': 'json',
-        'contentType': 'application/json; charset=utf-8'
+        "processData": false,
+        "data": JSON.stringify(data)
+      }
+
+    $.ajax(settings).done(function (response) {
+        window.location.hash = response['_id'];
+        $('button').after('<p>Your link: <a href="'+window.location.href+'">'+window.location.href+'</a></p>');
     });
+
     console.log("Sendeded!")
-}
 
-function getRandom() {
-    let text = "";
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (let i = 0; i < 5; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
 }
 
 function getUrls() {
@@ -32,9 +31,11 @@ function getUrls() {
 
     eitherUrl = protocol_ok(eitherUrl);
     orUrl = protocol_ok(orUrl);
-    console.log(eitherUrl, orUrl)
-    genHash();
-    send_request(eitherUrl, orUrl);
+    
+    const dataPackage = { either_url: eitherUrl, or_url: orUrl }
+    console.log(dataPackage)
+
+    sendRequest(dataPackage);
 }
 
 const protocol_ok = function(url) {
@@ -47,9 +48,38 @@ const protocol_ok = function(url) {
     }
 }
 
-function genHash(){
-    if (window.location.hash == "") {
-        window.location.hash = getRandom();
-    }
+
+
+const fiftyFifty = function() {
+   let num = Math.floor(Math.random() * 2)
+   return num;
+}
+
+const hashh = window.location.hash.substr(1);
+
+if (window.location.hash != "") {
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": endPoint + '/' + hashh,
+        "method": "GET",
+        "headers": {
+          "content-type": "application/json",
+          "x-apikey": key,
+          "cache-control": "no-cache"
+        }
+      }
+      
+      $.ajax(settings).done(function (response) {
+        if (fiftyFifty() === 1) {
+            if (response != null) {
+               window.location.href = response['either_url'];
+            }
+        } else {
+            if (response != null) {
+               window.location.href = response['or_url'];
+            }
+        }    
+      });  
 }
 
